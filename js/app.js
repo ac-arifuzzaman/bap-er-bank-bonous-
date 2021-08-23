@@ -11,16 +11,31 @@ function updateTotal(updateField, amount) {
     const previousTotal = parseFloat(totalText);
     const newTotal = previousTotal + amount;
     updateTotalTag.innerText = newTotal;
+    return newTotal;
 }
 // handle deposite balance
 document.getElementById('deposit-button').addEventListener('click', function () {
     const amount = getInputValue('deposit-input');
-    updateTotal('deposit-total', amount)
+    updateTotal('deposit-total', amount);
+    updateBalance(amount)
 })
 //  handle widthdraw balance
 document.getElementById('withdraw-button').addEventListener('click', function () {
-    const widthdrawAmount = getInputValue('withdraw-input');
-    updateTotal('withdraw-total', widthdrawAmount)
+    const amount = getInputValue('withdraw-input');
+    updateTotal('withdraw-total', amount)
+    updateBalance(amount)
 })
 // handle main balance
-document.getElementById('')
+function updateBalance(amount, isAdding) {
+    const balanceTag = document.getElementById('balance-total');
+    const balanceTotalText = balanceTag.innerText;
+    const previousBalance = parseFloat(balanceTotalText);
+    let newBalance;
+    if (isAdding == true) {
+        newBalance = previousBalance + amount;
+    }
+    else {
+        newBalance = previousBalance - amount;
+    }
+    balanceTag.innerText = balanceTotal;
+}
